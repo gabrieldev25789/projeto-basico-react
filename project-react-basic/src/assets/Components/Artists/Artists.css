@@ -15,3 +15,7 @@ img{
 #list-artists{
     display: flex;
 }
+
+.album{
+    width: 40vh;
+}
