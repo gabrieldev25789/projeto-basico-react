@@ -1,0 +1,17 @@
+img{
+    width: 50vh;
+    margin: 2rem;
+    border-radius: 20px;
+    cursor: pointer;
+    box-shadow: 5px 5px 5px rgb(75, 69, 69);
+}
+
+.artist{
+    width: 100%;
+    background-color: blue;
+    text-align: center;
+}
+
+#list-artists{
+    display: flex;
+}
