@@ -1,10 +1,11 @@
-import React, { useState } from 'react'
-// ARTISTAS 
-import kanye  from "../imgs/kanyewest.jpg"
+import React, { useState } from "react"
+
+// IMAGENS ARTISTAS
+import kanye from "../imgs/kanyewest.jpg"
 import mj from "../imgs/mj.webp"
 import drake from "../imgs/drake.jpg"
 
-// ALBUNS 
+// ALBUNS
 import graduation from "../imgs/graduation.jpg"
 import bad from "../imgs/bad.jpg"
 import views from "../imgs/views.jpg"
@@ -12,42 +13,85 @@ import views from "../imgs/views.jpg"
 import "./Artists.css"
 
 function Artists() {
-   
-    function handleImg(nomeArtista) {
-  if (artistaSelecionado === nomeArtista) {
-    setArtistaSelecionado(null) // fecha se clicar de novo
-  } else {
-    setArtistaSelecionado(nomeArtista) // abre
+  const [artistaSelecionado, setArtistaSelecionado] = useState(null)
+
+  const artistas = [
+    {
+      nome: "Michael Jackson",
+      id: 1,
+      idade: 50,
+      img: mj,
+      albumMaisVendido: {
+        nome: "Thriller",
+        dataLancamento: 1982,
+        vendas: 100,
+        img: bad,
+      },
+    },
+    {
+      nome: "Kanye West",
+      id: 2,
+      idade: 42,
+      img: kanye,
+      albumMaisVendido: {
+        nome: "Graduation",
+        dataLancamento: 2010,
+        vendas: 14,
+        img: graduation,
+      },
+    },
+    {
+      nome: "Drake",
+      id: 3,
+      idade: 38,
+      img: drake,
+      albumMaisVendido: {
+        nome: "Take Care",
+        dataLancamento: 2011,
+        vendas: 12,
+        img: views,
+      },
+    },
+  ]
+
+  function handleImg(nomeArtista) {
+    if (artistaSelecionado === nomeArtista) {
+      setArtistaSelecionado(null)
+    } else {
+      setArtistaSelecionado(nomeArtista)
+    }
   }
-}
-     const [artistaSelecionado, setArtistaSelecionado] = useState(null)
 
   return (
-    <>
     <div id="list-artists">
+      {artistas.map((artista) => (
+        <div key={artista.id} className="artist">
+          <h2>{artista.nome}</h2>
 
-        <div id='kanye' className='artist'>
-            <h2>KANYE WEST</h2>
-            <img onClick={() => handleImg("kanye")} src={kanye} alt="Kanye West" />  
-            {artistaSelecionado === "kanye" && 
-            <img src={graduation} className='album' alt="graduation-album" />}
-        </div>    
+          <img
+            src={artista.img}
+            alt={artista.nome}
+            onClick={() => handleImg(artista.nome)}
+          />
 
-        <div id='kanye' className='artist'>
-            <h2>Michael Jackson</h2>
-            <img onClick={() => handleImg("Michael Jackson")} src={mj} alt="Michael Jackson" /> 
-            {artistaSelecionado === "Michael Jackson" &&  <img src={bad} className='album' alt="bad-album" /> }
+          {artistaSelecionado === artista.nome && (
+            <div className="album-info">
+              <img
+                src={artista.albumMaisVendido.img}
+                className="album"
+                alt="album"
+              />
 
-        </div> 
-
-        <div id='kanye' className='artist'>
-            <h2>Drake</h2>
-            <img onClick={()=> handleImg("Drake")} src={drake} alt="Drake" />  
-            {artistaSelecionado === "Drake" &&  <img src={views} className='album' alt="views-album" />}
-        </div>  
-
+              <ul>
+                <li>{artista.albumMaisVendido.nome}</li>
+                <li>{artista.albumMaisVendido.dataLancamento}</li>
+                <li>{artista.albumMaisVendido.vendas} milhões</li>
+              </ul>
+            </div>
+          )}
+        </div>
+      ))}
     </div>
-    </>
   )
 }
 
