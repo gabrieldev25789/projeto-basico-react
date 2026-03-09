@@ -1,4 +1,5 @@
 import Artists from "./assets/Components/Artists/Artists"
+import Form from "./assets/Components/Form/Form"
 
 
 function App() {
@@ -6,6 +7,7 @@ function App() {
     <>
       <div>
           <Artists />
+          <Form />
        </div>
     </>
   )
